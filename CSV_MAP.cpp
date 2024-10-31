@@ -1,13 +1,13 @@
 #include "rapidcsv.h"
 #include <iostream>
 #include <string.h>
-// #include "Score.cpp"
 #include "Score.h"
+#include "Hash.h"
 #include <array>
 
-std::array<int, 3> read_cell(std::string input_cell_string){
-	
 
+std::array<int, 3> read_cell(std::string input_cell_string)
+{
 	std::string tsumo_str 	= input_cell_string.substr(0, input_cell_string.find(" "));
 	std::string ron_str 	= input_cell_string.substr(input_cell_string.find(" ") + 1, input_cell_string.size());
 	
@@ -38,17 +38,9 @@ std::array<int, 3> read_cell(std::string input_cell_string){
 
 	return points_array;
 }
-int create_han_fu_hash(int han, int fu)
+
+void read_table_csv(std::map<int, Score> score_map, std::string table_file) 
 {
-	//64 bit number
-	//32 bit hash for each number
-
-	//cantor pairing function
-	int cantor = (((han + fu) * (han + fu + 1)) / 2 ) + fu;
-
-	return cantor;
-}
-void read_table_csv(std::map<int, Score> score_map, std::string table_file) {
 	printf("Table being read: %s\n", table_file.c_str());
 	rapidcsv::Document table_doc(table_file);
 
@@ -77,7 +69,8 @@ void read_table_csv(std::map<int, Score> score_map, std::string table_file) {
 		}
 	}
 }
-void read_HH_table(std::map<int, Score> score_map, std::string high_hand_table_doc) {
+void read_HH_table(std::map<int, Score> score_map, std::string high_hand_table_doc) 
+{
 	printf("High Hand Table being read: %s\n", high_hand_table_doc.c_str());
 
 	rapidcsv::Document hh_doc(high_hand_table_doc);
@@ -92,12 +85,14 @@ void read_HH_table(std::map<int, Score> score_map, std::string high_hand_table_d
 		
 		int hh_hf_hash = create_han_fu_hash(row + 5, 0);
 		// printf("%d Han: %s\n", row + 5, cell_str.c_str());
+		std::pair<int, Score> cell_pair = std::make_pair(hh_hf_hash, cell_score);
 
+		score_map.insert(cell_pair);
 	}
 }
 
-
-int main(){
+void CSV_MAP (std::map<int, Score> dealer_map, std::map<int, Score> nondealer_map)
+{
 	//table strings
 	std::string dealer_table_file("Dealer Table.csv");
 	std::string dealer_high_hands("Dealer High Hands.csv");
@@ -105,13 +100,7 @@ int main(){
 	std::string nondealer_table_file("Non Dealer Table.csv");
 	std::string nondealer_high_hands("Non Dealer High Hands.csv");
 
-
 	//maps
-	std::map<int, Score> dealer_map;
-	std::map<int, Score> nondealer_map;
-
-
-
 
 	//reading
 	read_table_csv(dealer_map, dealer_table_file);
@@ -120,6 +109,10 @@ int main(){
 	read_table_csv(nondealer_map, nondealer_table_file);
 	read_HH_table(nondealer_map, nondealer_high_hands);
 
+	//create map file from hash map
+	//kind of pointless. the map is extremely small.
+	// generate_map_file(dealer_map);
+	// generate_map_file(nondealer_map);
 
-	return 0;
 }
+

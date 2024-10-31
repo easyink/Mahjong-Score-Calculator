@@ -1,3 +1,2 @@
-csv_to_map:
-	g++ csv_to_map.cpp Score.cpp -o csv_to_map.exe 
-
+Calculate_Hand:
+	g++ Calculate_Hand.cpp CSV_MAP.cpp Score.cpp Hash.cpp -o Calculate_Hand.exe
