@@ -1,5 +1,5 @@
 #include "Score.h"
-
+#include <regex>
 
 Score::Score( int tsumo_nondealer_value,int tsumo_dealer_value, int ron_value)
 {
@@ -23,4 +23,22 @@ int Score::getTsumo_dealer()
 int Score::getTsumo_nondealer()
 {
 	return tsumo_nondealer_points; 
+}
+
+bool Score::is_score(std::string input_string)
+{
+	//assembles regex pattern from string 
+	std::regex pattern(string_pattern);
+
+
+	// bool has_han = input_string.find("h") != std::string::npos;
+
+	// bool has_fu = input_string.find('f') != std::string::npos;
+
+	// bool valid = has_han && has_fu;
+	
+	//returns true or false if the input string matches the pattern (duh)
+	bool valid = std::regex_match(input_string,pattern);
+
+	return valid;
 }
