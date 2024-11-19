@@ -20,6 +20,8 @@ public:
 	int getRon();
 
 	static bool is_score(std::string input_string);
+
+	static bool has_digit(std::string input_string);
 };
 
 

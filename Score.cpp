@@ -7,7 +7,6 @@ Score::Score( int tsumo_nondealer_value,int tsumo_dealer_value, int ron_value)
 	tsumo_nondealer_points = tsumo_nondealer_value;
 	tsumo_dealer_points = tsumo_dealer_value;
 
-
 }
 
 int Score::getRon()
@@ -41,4 +40,13 @@ bool Score::is_score(std::string input_string)
 	bool valid = std::regex_match(input_string,pattern);
 
 	return valid;
+}
+
+bool Score::has_digit(std::string input_string)
+{
+	std::regex digit_pattern("(\\d+)");
+
+	bool valid_digits = std::regex_match(input_string, digit_pattern);
+
+	return valid_digits;
 }
