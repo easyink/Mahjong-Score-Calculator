@@ -39,9 +39,9 @@ int main(int argc, char* argv[])
 		//I think this is just an annoying and bad input. should just do the same as case 1. 
 
 		//query for han, fu and then dealership
-		han_and_fu = ask_for_han_fu();
+		han_and_fu = Input::ask_for_han_fu();
 
-		dealership = ask_for_dealership();
+		dealership = Input::ask_for_dealership();
 
 		break;
 	}
@@ -82,10 +82,10 @@ int main(int argc, char* argv[])
 	}
 
 		case 4:
+	{
 
 		//assuming all 3 fields are han, fu, and then dealership
 		//need to verify that they are correct.
-
 		bool arg1 = Score::has_digit(argv[1]);
 		bool arg2 = Score::has_digit(argv[2]);
 
@@ -103,11 +103,14 @@ int main(int argc, char* argv[])
 			dealership = (arg3 == 1);
 
 		}
+	}
 		
 	default:
+	{
 		printf("Missing or Invalid Input.\n");
 		break;
 	}
+}
 
 
 	return 0;

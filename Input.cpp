@@ -2,7 +2,7 @@
 #include <regex>
 #include <iostream>
 
-std::array<int,2> ask_for_han_fu()
+std::array<int,2> Input::ask_for_han_fu()
 {
 	int han;
 	int fu;
@@ -19,7 +19,7 @@ std::array<int,2> ask_for_han_fu()
 	return han_fu_arr;
 }
 
-bool ask_for_dealership()
+bool Input::ask_for_dealership()
 {
 	printf("Are you the dealer of this hand? (Y/N): ");
 
@@ -45,6 +45,8 @@ bool ask_for_dealership()
 	else
 	{
 		printf("Invalid Response.\n");
+
+		exit(0);
 	}
 
 }

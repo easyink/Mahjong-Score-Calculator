@@ -51,7 +51,7 @@ bool Score::has_digit(std::string input_string)
 	return valid_digits;
 }
 
-int has_dealership(std::string input_string)
+int Score::has_dealership(std::string input_string)
 {
 
 	//dealer = 1
