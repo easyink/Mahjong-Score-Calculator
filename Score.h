@@ -22,6 +22,7 @@ public:
 	static bool is_score(std::string input_string);
 
 	static bool has_digit(std::string input_string);
+	static int has_dealership(std::string input_string);
 };
 
 

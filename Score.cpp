@@ -50,3 +50,30 @@ bool Score::has_digit(std::string input_string)
 
 	return valid_digits;
 }
+
+int has_dealership(std::string input_string)
+{
+
+	//dealer = 1
+	//nondealer = 0
+	//not valid = -1
+	std::regex dealer_pattern("(dealer|nondealer)", std::regex_constants::icase);
+
+	bool valid_dealer = std::regex_match(input_string, dealer_pattern);
+
+
+	if (valid_dealer)
+	{
+		if(input_string[0] == 'D' || input_string[0] == 'd')
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	else{
+		return -1;
+	}
+}
