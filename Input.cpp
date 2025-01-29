@@ -14,6 +14,9 @@ std::array<int,2> Input::ask_for_han_fu()
 	std::cin >> fu;
 	
 
+	//need to verify that these two inputs are just digits
+	//TODO
+
 	std::array<int,2> han_fu_arr= {han, fu};
 
 	return han_fu_arr;
@@ -33,14 +36,15 @@ bool Input::ask_for_dealership()
 
 	if(valid)
 	{
-		if(answer == "Y" || answer == "y")
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return (answer == "Y" || answer == "y");
+		// if(answer == "Y" || answer == "y")
+		// {
+		// 	return true;
+		// }
+		// else
+		// {
+		// 	return false;
+		// }
 	}
 	else
 	{
